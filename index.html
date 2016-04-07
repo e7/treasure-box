@@ -9,8 +9,39 @@
   </head>
 
   <body>
-    <div id="app">
-      {{ message }}
+    <div id="app" class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <ul class="nav nav-pills">
+            <li role="presentation" class="active"><a href="#">Home</a></li>
+            <li role="presentation"><a href="#">Profile</a></li>
+            <li role="presentation"><a href="#">Messages</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-4">
+          <div class="jumbotron">
+            <h1>Hello, world!</h1>
+            <p>...</p>
+            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div>
+            <a href="#">注册</a>
+            <a href="#">登录</a>
+          </div>
+          <div class="panel panel-primary">
+              <div class="panel-heading">Panel title</div>
+              <div class="panel-body">
+                <label>{{message}}</label>
+                <input v-model="message" />
+              </div>
+          </div>
+        </div>
+        <div class="col-md-4">.col-md-4</div>
+      </div>
     </div>
 
     <script src="js/vue.js"></script>
