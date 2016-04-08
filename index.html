@@ -12,10 +12,18 @@
     <div id="app" class="container">
       <div class="row">
         <div class="col-md-12">
+          <a v-link="{path: '/register'}">注册</a>
+          <a v-link="{path: '/login'}">登录</a>
+        </div>
+      </div>
+
+      <div class="clearfix" style="margin-bottom: 16px;"></div><!-- 清除浮动 -->
+
+      <div class="row">
+        <div class="col-md-12">
           <ul class="nav nav-pills">
-            <li role="presentation" class="active"><a href="#">Home</a></li>
-            <li role="presentation"><a href="#">Profile</a></li>
-            <li role="presentation"><a href="#">Messages</a></li>
+            <li role="presentation" class="active"><a href="#">首页</a></li>
+            <li role="presentation"><a>联系我们</a></li>
           </ul>
         </div>
       </div>
@@ -23,6 +31,17 @@
       <div class="clearfix" style="margin-bottom: 16px;"></div><!-- 清除浮动 -->
 
       <div class="row">
+        <div class="col-md-4">
+          <div class="panel panel-primary">
+              <div class="panel-heading">
+                title
+              </div>
+              <div class="panel-body">
+                <router-view></router-view>
+              </div>
+          </div>
+        </div>
+
         <div class="col-md-8">
           <div class="jumbotron">
             <h1>while your lips are still red</h1>
@@ -43,31 +62,53 @@
             <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
           </div>
         </div>
-        <div class="col-md-4">
-          <a href="#">注册</a>
-          <a href="#">登录</a>
-          <div class="clearfix" style="margin-bottom: 16px;"></div><!-- 清除浮动 -->
-          <div class="panel panel-primary">
-              <div class="panel-heading">
-                title
-              </div>
-              <div class="panel-body">
-                <label>{{message}}</label>
-                <input v-model="message" />
-              </div>
-          </div>
-        </div>
-      </div>
+     </div>
     </div>
 
     <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+
     <script>
-      var vm = new Vue({
-        el: '#app',
-        data: {
-          message: 'Hello Vue.js!'
-        }
+      // 定义组件
+      var Foo = Vue.extend({
+          template: "<p>This is foo!</p>",
       });
+
+      var Bar = Vue.extend({
+        template: " \
+          <form class='form-horizontal'> \
+            <div class='form-group'> \
+              <label for='inputEmail3' class='col-sm-2 control-label'>Email</label> \
+              <div class='col-sm-10'> \
+                <input type='email' class='form-control' id='inputEmail3' placeholder='Email'> \
+              </div> \
+            </div> \
+            \
+            <div class='form-group'> \
+              <div class='col-sm-offset-2 col-sm-10'> \
+                <button type='submit' class='btn btn-default'>登录</button> \
+              </div> \
+            </div> \
+          </form> \
+        ",
+      });
+
+      var router = new VueRouter();
+
+      router.map({
+        "/register": {
+          component: Foo,
+        },
+        "/login": {
+          component: Bar,
+        },
+        "/": {
+          component: Bar,
+        },
+      });
+
+      var app = Vue.extend({});
+      router.start(app, "#app");
     </script>
   </body>
 </html>
