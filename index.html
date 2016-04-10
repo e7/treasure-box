@@ -1,107 +1,91 @@
 <!DOCTYPE html>
 
 <html lang="zh">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>client</title>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-  </head>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>client</title>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
 
-  <body>
-    <div class="container">
-      <div id="ui-header" class="row">
-        <div class="col-md-12">
-          <a href="#/register">注册</a>
-          <a href="#/login">登录</a>
-        </div>
-      </div>
-
-      <div class="clearfix" style="margin-bottom: 16px;"></div><!-- 清除浮动 -->
-
-      <div class="row">
-        <div class="col-md-12">
-          <ul class="nav nav-pills">
-            <li role="presentation" class="active"><a href="#/login">首页</a></li>
-            <li role="presentation"><a>联系我们</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="clearfix" style="margin-bottom: 16px;"></div><!-- 清除浮动 -->
-
-      <div id="ui-body" class="row">
-        <div class="col-md-4">
-          <div class="panel panel-primary">
-              <div id="ui-form-title" class="panel-heading">
-              </div>
-              <div id="ui-form-body" class="panel-body">
-              </div>
-          </div>
-        </div>
-
-        <div class="col-md-8">
-          <div class="jumbotron">
-            <h1>while your lips are still red</h1>
-            <p>
-            sweet little words made for silence not talk
-            young heart for love not heartache
-            dark hair for catching the wind
-            not to veil the sight of a cold world
-
-            kiss while your lips are still red
-            while he's still silent rest
-            while bosom is still untouched, unveiled
-            hold another hand while the hand's still without a tool
-
-            drawn into eyes while they are still blind
-            love while the night still hides the withering down
-            </p>
-            <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
-          </div>
-        </div>
-     </div>
+<body>
+  <div class="container">
+    <div id="ui-header" class="row">
     </div>
-  </body>
 
-  <script src="js/jquery-2.2.3.js"></script>
-  <script src="js/director.js"></script>
-  <script>
-    $("document").ready(function() {
-      // 加载前端路由
-      var routes = {
-        "/register": function () {
-          $("#ui-form-title").html("注册");
-          $.get("ui/form-register.html", function (result) {
-            $("#ui-form-body").html(result);
-          });
-        },
+    <div class="clearfix" style="margin-bottom: 16px;"></div><!-- 清除浮动 -->
 
-        "/login": function () {
-          $("#ui-form-title").html("登录");
-          $.get("ui/form-login.html", function(result) {
-            $("#ui-form-body").html(result);
-          });
-          $("#act-login").on("click", function () {
-            alert("asfdasf");
-          });
-        },
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="nav nav-pills">
+          <li role="presentation" class="active"><a href="/">首页</a></li>
+          <li role="presentation"><a>联系我们</a></li>
+        </ul>
+      </div>
+    </div>
 
-        "/main": function () {
-          $.get("ui/header-user.html", function (result) {
-            $("#ui-header").html(result);
-          });
-          $.get("ui/pswd-table.html", function (result) {
-            $("#ui-body").html(result);
-          });
-        },
-      };
+    <div class="clearfix" style="margin-bottom: 16px;"></div><!-- 清除浮动 -->
 
-      var router = Router(routes);
+    <div id="ui-body" class="row">
+      <div class="col-md-4">
+        <div class="panel panel-primary">
+            <div id="ui-form-title" class="panel-heading">
+            </div>
+            <div id="ui-form-body" class="panel-body">
+            </div>
+        </div>
+      </div>
 
-      router.init();
+      <div class="col-md-8">
+        <div class="jumbotron">
+          <h1>while your lips are still red</h1>
+          <p>
+          sweet little words made for silence not talk
+          young heart for love not heartache
+          dark hair for catching the wind
+          not to veil the sight of a cold world
 
-      location.href = "#/login";
+          kiss while your lips are still red
+          while he's still silent rest
+          while bosom is still untouched, unveiled
+          hold another hand while the hand's still without a tool
+
+          drawn into eyes while they are still blind
+          love while the night still hides the withering down
+          </p>
+          <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+        </div>
+      </div>
+   </div>
+  </div>
+</body>
+
+<script src="js/jquery-2.2.3.js"></script>
+<script>
+  function loadRegForm() {
+    $("#ui-form-title").html("注册");
+
+    $.get("ui/form-register.html", function(result) {
+      $("#ui-form-body").html(result);
+      $("#ui-login").on("click", function () {
+        loadLoginForm();
+      });
     });
-  </script>
+  }
+
+  function loadLoginForm() {
+    $("#ui-form-title").html("登录");
+
+    $.get("ui/form-login.html", function(result) {
+      $("#ui-form-body").html(result);
+      $("#ui-register").on("click", function () {
+        loadRegForm();
+      });
+    });
+  }
+
+  $("document").ready(function() {
+    loadLoginForm();
+  }); // end of document ready
+</script>
 </html>
