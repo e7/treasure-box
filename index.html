@@ -9,8 +9,8 @@
   </head>
 
   <body>
-    <div id="app" class="container">
-      <div class="row">
+    <div class="container">
+      <div id="ui-header" class="row">
         <div class="col-md-12">
           <a href="#/register">注册</a>
           <a href="#/login">登录</a>
@@ -22,7 +22,7 @@
       <div class="row">
         <div class="col-md-12">
           <ul class="nav nav-pills">
-            <li role="presentation" class="active"><a href="#">首页</a></li>
+            <li role="presentation" class="active"><a href="#/login">首页</a></li>
             <li role="presentation"><a>联系我们</a></li>
           </ul>
         </div>
@@ -30,44 +30,12 @@
 
       <div class="clearfix" style="margin-bottom: 16px;"></div><!-- 清除浮动 -->
 
-      <div class="row">
+      <div id="ui-body" class="row">
         <div class="col-md-4">
           <div class="panel panel-primary">
-              <div class="panel-heading">
-                title
+              <div id="ui-form-title" class="panel-heading">
               </div>
-              <div class="panel-body">
-                <form class="form-horizontal">
-                  <div class="form-group">
-                    <div class="col-md-12">
-                      <input type="email" class="form-control" id="inputEmail3" placeholder="帐号">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <div class="col-md-12">
-                      <input type="password" class="form-control" id="inputPassword3" placeholder="密码">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <div class="col-md-12">
-                      <input type="text" class="form-control" id="inputVerifyCode" placeholder="验证码">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <div class="col-md-offset-4 col-md-8">
-                      <img src="..." alt="..." class="img-thumbnail">
-                    </div>
-                  </div>
-
-                  <div class="form-group">
-                    <div class="col-md-offset-8 col-md-4">
-                      <button type="submit" class="btn btn-default">登录</button>
-                    </div>
-                  </div>
-                </form>
+              <div id="ui-form-body" class="panel-body">
               </div>
           </div>
         </div>
@@ -100,23 +68,40 @@
   <script src="js/director.js"></script>
   <script>
     $("document").ready(function() {
-      var register = function () { console.log("register"); };
-      var books = function () { console.log("books"); };
-      var viewBook = function (bookId) {
-        console.log("viewBook: bookId is populated: " + bookId);
-      };
-
+      // 加载前端路由
       var routes = {
-        "/register": register,
-        "/login": [books, function() {
-          console.log("An inline route handler.");
-        }],
-        "/books/view/:bookId": viewBook
+        "/register": function () {
+          $("#ui-form-title").html("注册");
+          $.get("ui/form-register.html", function (result) {
+            $("#ui-form-body").html(result);
+          });
+        },
+
+        "/login": function () {
+          $("#ui-form-title").html("登录");
+          $.get("ui/form-login.html", function(result) {
+            $("#ui-form-body").html(result);
+          });
+          $("#act-login").on("click", function () {
+            alert("asfdasf");
+          });
+        },
+
+        "/main": function () {
+          $.get("ui/header-user.html", function (result) {
+            $("#ui-header").html(result);
+          });
+          $.get("ui/pswd-table.html", function (result) {
+            $("#ui-body").html(result);
+          });
+        },
       };
 
       var router = Router(routes);
 
       router.init();
+
+      location.href = "#/login";
     });
   </script>
 </html>
