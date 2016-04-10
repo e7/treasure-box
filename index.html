@@ -62,30 +62,10 @@
 
 <script src="js/jquery-2.2.3.js"></script>
 <script>
-  function loadRegForm() {
-    $("#ui-form-title").html("注册");
-
-    $.get("ui/form-register.html", function(result) {
-      $("#ui-form-body").html(result);
-      $("#ui-login").on("click", function () {
-        loadLoginForm();
-      });
-    });
-  }
-
-  function loadLoginForm() {
-    $("#ui-form-title").html("登录");
-
+  $("document").ready(function() {
     $.get("ui/form-login.html", function(result) {
       $("#ui-form-body").html(result);
-      $("#ui-register").on("click", function () {
-        loadRegForm();
-      });
     });
-  }
-
-  $("document").ready(function() {
-    loadLoginForm();
   }); // end of document ready
 </script>
 </html>

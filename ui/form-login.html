@@ -27,3 +27,25 @@
 </form>
 
 <a id="ui-register" style="cursor:pointer">还没有帐号？</a>
+
+<script>
+  var init = function () {
+    $("#ui-form-title").html("登录");
+
+    // 还没有帐号？
+    $("#ui-register").on("click", function () {
+      $.get("ui/form-register.html", function(result) {
+        $("#ui-form-body").html(result);
+      });
+    });
+
+    // 登录按钮
+    $("#act-login").on("click", function () {
+      $.get("ui/header-user.html", function(result) {
+        $("#ui-header").html(result);
+      });
+    });
+  };
+
+  init();
+</script>

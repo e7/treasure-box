@@ -1,1 +1,15 @@
 <a id="ui-login" style="cursor:pointer">已有帐号？</a>
+
+<script>
+  var init = function () {
+    $("#ui-form-title").html("注册");
+
+    $("#ui-login").on("click", function () {
+      $.get("ui/form-login.html", function(result) {
+        $("#ui-form-body").html(result);
+      });
+    });
+  };
+
+  init();
+</script>
