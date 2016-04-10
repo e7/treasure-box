@@ -27,45 +27,29 @@
     <div class="clearfix" style="margin-bottom: 16px;"></div><!-- 清除浮动 -->
 
     <div id="ui-body" class="row">
-      <div class="col-md-4">
-        <div class="panel panel-primary">
-            <div id="ui-form-title" class="panel-heading">
-            </div>
-            <div id="ui-form-body" class="panel-body">
-            </div>
-        </div>
-      </div>
-
-      <div class="col-md-8">
-        <div class="jumbotron">
-          <h1>while your lips are still red</h1>
-          <p>
-          sweet little words made for silence not talk
-          young heart for love not heartache
-          dark hair for catching the wind
-          not to veil the sight of a cold world
-
-          kiss while your lips are still red
-          while he's still silent rest
-          while bosom is still untouched, unveiled
-          hold another hand while the hand's still without a tool
-
-          drawn into eyes while they are still blind
-          love while the night still hides the withering down
-          </p>
-          <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
-        </div>
-      </div>
-   </div>
+    </div>
   </div>
 </body>
 
 <script src="js/jquery-2.2.3.js"></script>
+<script src="js/jquery.cookie.js"></script>
 <script>
-  $("document").ready(function() {
-    $.get("ui/form-login.html", function(result) {
-      $("#ui-form-body").html(result);
+$(document).ready(function () {
+  var sessionid = $.cookie("sessionid");
+
+  if (typeof sessionid == "undefined") {
+      $.get("ui/index-body.html", function(result) {
+        $("#ui-body").html(result);
+      });
+  } else {
+    $.get("ui/header-user.html", function(result) {
+      $("#ui-header").html(result);
     });
-  }); // end of document ready
+
+    $.get("ui/pswd-table.html", function(result) {
+      $("#ui-body").html(result);
+    });
+  }
+}); // end of document ready
 </script>
 </html>

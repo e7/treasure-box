@@ -1,0 +1,39 @@
+<div class="col-md-8">
+  <div class="jumbotron">
+    <h1>while your lips are still red</h1>
+    <p>
+    sweet little words made for silence not talk
+    young heart for love not heartache
+    dark hair for catching the wind
+    not to veil the sight of a cold world
+
+    kiss while your lips are still red
+    while he's still silent rest
+    while bosom is still untouched, unveiled
+    hold another hand while the hand's still without a tool
+
+    drawn into eyes while they are still blind
+    love while the night still hides the withering down
+    </p>
+    <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+  </div>
+</div>
+
+<div class="col-md-4">
+  <div class="panel panel-primary">
+      <div id="ui-form-title" class="panel-heading">
+      </div>
+      <div id="ui-form-body" class="panel-body">
+      </div>
+  </div>
+</div>
+
+<script>
+  var init = function () {
+    $.get("ui/form-login.html", function(result) {
+      $("#ui-form-body").html(result);
+    });
+  };
+
+  init();
+</script>

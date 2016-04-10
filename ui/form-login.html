@@ -41,9 +41,25 @@
 
     // 登录按钮
     $("#act-login").on("click", function () {
-      $.get("ui/header-user.html", function(result) {
-        $("#ui-header").html(result);
-      });
+      $.post("http://127.0.0.1:8008/login",
+             {username: "lijia", password: "111"}, function (data) {
+        console.log(data);
+        if ("200" == data.result) {
+          $.cookie("sessionid", data.data.sessionid, {
+            expires: 1, path: "/", domain: "127.0.0.1", secure: false
+          });
+
+          $.get("ui/header-user.html", function(result) {
+            $("#ui-header").html(result);
+          });
+
+          $.get("ui/pswd-table.html", function(result) {
+            $("#ui-body").html(result);
+          });
+
+          return;
+        }
+      }, "json");
     });
   };
 

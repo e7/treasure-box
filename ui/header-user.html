@@ -1,4 +1,24 @@
 <div class='col-md-12'>
-  welcome
-  <a href="#">注销</a>
+  welcome you
+  <a id="act_logout" style="cursor:pointer">注销</a>
 </div>
+
+<script>
+  var init = function () {
+    $("#act_logout").on("click", function () {
+      $.cookie("sessionid", "", {
+        expires: -1, path: "/", domain: "127.0.0.1", secure: false
+      });
+
+      $("#ui-header").html("");
+      $.get("ui/index-body.html", function(result) {
+        $("#ui-body").html(result);
+      });
+
+      $.post("http://127.0.0.1:8008/logout",
+             {username: "lijia", sessionid: "thisissessiondid"});
+    });
+  };
+
+  init();
+</script>
