@@ -16,7 +16,7 @@
   </div>
   <div class="form-group">
     <div class="col-md-offset-4 col-md-8">
-      <img id="img_verify_code" src="http://127.0.0.1:8080/tiny_chest/servlets/verify_code.png" alt="看不情？点击换一张" class="img-thumbnail" style="cursor:pointer">
+      <img id="img_verify_code" src="" alt="看不情？点击换一张" class="img-thumbnail" style="cursor:pointer">
     </div>
   </div>
   <div class="form-group">
@@ -35,7 +35,7 @@
 
     // 刷新验证码
       $("#img_verify_code").click(function(event) {
-        $(this).attr("src", "http://127.0.0.1:8080/tiny_chest/servlets/verify_code.png?rand="
+        $(this).attr("src", ""
           + parseInt(Math.random() * MAGICNUM));
       });
 
