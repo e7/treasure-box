@@ -34,10 +34,14 @@
 <script src="js/jquery-2.2.3.js"></script>
 <script src="js/jquery.cookie.js"></script>
 <script>
+function checkSession(sessionid) {
+  return true;
+}
+
 $(document).ready(function () {
   var sessionid = $.cookie("sessionid");
 
-  if (typeof sessionid == "undefined") {
+  if ((typeof sessionid == "undefined") || (! checkSession(sessionid))) {
       $.get("ui/index-body.html", function(result) {
         $("#ui-body").html(result);
       });

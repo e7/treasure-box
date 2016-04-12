@@ -1,17 +1,17 @@
 <form class="form-horizontal">
   <div class="form-group">
     <div class="col-md-12">
-      <input type="email" class="form-control" id="inputEmail3" placeholder="帐号">
+      <input id="username" type="email" class="form-control" id="inputEmail3" placeholder="帐号">
     </div>
   </div>
   <div class="form-group">
     <div class="col-md-12">
-      <input type="password" class="form-control" id="inputPassword3" placeholder="密码">
+      <input id="password" type="password" class="form-control" id="inputPassword3" placeholder="密码">
     </div>
   </div>
   <div class="form-group">
     <div class="col-md-12">
-      <input type="text" class="form-control" id="inputVerifyCode" placeholder="验证码">
+      <input id="verifycode" type="text" class="form-control" id="inputVerifyCode" placeholder="验证码">
     </div>
   </div>
   <div class="form-group">
@@ -31,6 +31,7 @@
 <script>
   var init = function () {
     var MAGICNUM = 308546259;
+
     $("#ui-form-title").html("登录");
 
     // 刷新验证码
@@ -48,9 +49,29 @@
 
     // 登录按钮
     $("#act-login").on("click", function () {
+      var username = $.trim($("#username").val());
+      var password = $.trim($("#password").val());
+      var verifycode = $.trim($("#verifycode").val());
+
+      username = "jackzxty@126.com";
+      password = "123456";
+      verifycode = "123456";
+      if (0 == username.length) {
+        alert("用户名不能为空");
+        return;
+      }
+      if (0 == password.length) {
+        alert("密码不能为空");
+        return;
+      }
+      if (0 == verifycode.length) {
+        alert("验证码不能为空");
+        return;
+      }
+
       $.post("http://127.0.0.1:8008/login",
-             {username: "lijia", password: "111"}, function (data) {
-        console.log(data);
+             {username: username, password: password, verifycode: verifycode},
+             function (data) {
         if ("200" == data.result) {
           $.cookie("sessionid", data.data.sessionid, {
             expires: 1, path: "/", domain: "127.0.0.1", secure: false
@@ -63,9 +84,11 @@
           $.get("ui/pswd-table.html", function(result) {
             $("#ui-body").html(result);
           });
-
-          return;
+        } else {
+          alert("登录失败");
         }
+
+        return;
       }, "json");
     });
   };
